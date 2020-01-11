@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+    <meta charset="UTF-8">
+    <title>Nexus Communication System</title>
+
+    <!-- responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <link rel="stylesheet" href="~/Content/css/nav.scss">
+    <link rel="stylesheet" href="~/Content/css/nav.css">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700" />
+
+    <!-- master stylesheet -->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="~/Content/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="~/Content/images/favicon/favicon-16x16.png" sizes="16x16">
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/plugins")
+    @Styles.Render("~/Content/assets")
+
+</head>
+<body>
+    <!--Start Main Header-->
+    <header class="main-header style2 stricky">
+
+        <nav>
+            <div class="menubar">
+                <div class="logo">
+                    <a href="index.html"><img src="~/Content/images/resources/logo.png" alt=""></a>
+                </div>
+                <div class="icons">
+                    <i class="icon-menu"><span></span></i>
+                </div>
+            </div>
+            <ul class="menu">
+
+                <li class="menu-link"><a href="index.html" class="text-item">Home</a></li>
+                <li class="menu-link sub">
+                    <a href="#" class="text-item">About<span class="icon"></span></a>
+                    <ul class="submenu">
+                        <li class="sub-item"><a href="about.html">About Us</a></li>
+                        <li class="sub-item"><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="menu-link sub">
+                    <a href="#" class="text-item">Services<span class="icon"></span></a>
+                    <ul class="submenu">
+                        <li class="sub-item"><a href="connections.html">Connections</a></li>
+                        <li class="sub-item"><a href="packages.html">Packages</a></li>
+                    </ul>
+                </li>
+                <li class="menu-link sub">
+                    <a href="#" class="text-item">Registration<span class="icon"></span></a>
+                    <ul class="submenu">
+                        <li class="sub-item"><a href="signup.html">Sign Up</a></li>
+                        <li class="sub-item"><a href="signin.html">Sign In</a></li>
+                        <li class="sub-item"><a href="requestconnection.html">Request Connection</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!--End Main Header-->
+    @RenderBody()
+
+    <!--Start footer area-->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <!--Start single footer widget-->
+                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
+                    <div class="single-footer-widget marbtm50">
+                        <div class="title">
+                            <h3>About Nexus</h3>
+                        </div>
+                        <div class="company-info">
+                            <p>We want to surpass the needs and expectations of all our customers by providing reliable services with readily available customer support. This also means that we want to provide complete, high-quality Internet solutions to all of our customers by incorporating sensible and cost-effective technologies.</p>
+                            <div class="read-more">
+                                <a href="about.html">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End single footer widget-->
+                <!--Start single footer widget-->
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                    <div class="single-footer-widget marbtm50">
+                        <div class="title">
+                            <h3>Company</h3>
+                        </div>
+                        <ul class="page-links">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--End single footer widget-->
+                <!--Start single footer widget-->
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                    <div class="single-footer-widget marbtm50">
+                        <div class="title">
+                            <h3>Services</h3>
+                        </div>
+                        <ul class="services-links">
+                            <li><a href="#">Broadband</a></li>
+                            <li><a href="#">TV</a></li>
+                            <li><a href="#">Phone</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--End single footer widget-->
+                <!--Start single footer widget-->
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <div class="single-footer-widget pdtop50">
+                        <div class="title">
+                            <h3>Newsletter</h3>
+                        </div>
+                        <form class="newsletter-form" action="#">
+                            <input type="email" name="email" placeholder="Your Email">
+                            <button class="btn-one" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <!--End single footer widget-->
+            </div>
+        </div>
+    </footer>
+    <!--End footer area-->
+    <!--Start footer bottom area-->
+    <section class="footer-bottom-area">
+        <div class="border-box">
+            <div class="border-1"></div>
+            <div class="border-2"></div>
+            <div class="border-3"></div>
+
+            <div class="border-4"></div>
+            <div class="border-5"></div>
+            <div class="border-6"></div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="inner clearfix">
+                        <div class="single copyright-text">
+                            <p>© Copyright 2019 by<br> <a href="#">Nexus</a></p>
+                        </div>
+                        <div class="single footer-bottom-contact-info">
+                            <ul class="left">
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:needhelp@nexus.com">needhelp@nexsu.com</a></li>
+                                <li><i class="fa fa-phone-square" aria-hidden="true"></i><a href="tel:666888000">666 888 000</a></li>
+                            </ul>
+                        </div>
+                        <div class="single footer-bottom-contact-info">
+                            <ul class="right">
+                                <li>855 Road Broklyn Street, 600</li>
+                                <li>New York, USA</li>
+                            </ul>
+                        </div>
+                        <div class="single footer-social-links">
+                            <ul class="sociallinks-style-two fix">
+                                <li class="wow slideInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+                                    <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+                                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End footer bottom area-->  
+
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
