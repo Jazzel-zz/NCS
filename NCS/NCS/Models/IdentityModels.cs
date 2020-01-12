@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -20,6 +21,12 @@ namespace NCS.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public virtual ICollection<OrderDetail> CustomerDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<PlanDetail> PlanDetails { get; set; }
+        public virtual ICollection<ConnectionType> ConnectionTypes { get; set; }
+        public virtual ICollection<Connection> Connections { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

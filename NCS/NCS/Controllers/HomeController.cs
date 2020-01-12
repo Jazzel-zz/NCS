@@ -26,5 +26,13 @@ namespace NCS.Controllers
 
             return View();
         }
+        [Authorize]
+        public ActionResult Dashboard()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
     }
 }

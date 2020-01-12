@@ -18,6 +18,7 @@ namespace NCS.Models
         [Required]
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ICollection<PlanDetail> PlanDetails { get; set; }
 
 
 

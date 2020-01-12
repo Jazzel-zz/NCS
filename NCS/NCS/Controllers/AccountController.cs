@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using MimeKit;
 using NCS.Models;
 using MailKit.Net.Smtp;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace NCS.Controllers
 {
@@ -20,13 +22,12 @@ namespace NCS.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         ApplicationDbContext db;
-        string role = "Employee";
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +39,9 @@ namespace NCS.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -94,9 +95,8 @@ namespace NCS.Controllers
                     else
                     {
                         string roleName = UserManager.GetRoles(user.Id).FirstOrDefault();
-                        var isConfirmed = db.Users.Where(find => find.EmailConfirmed).FirstOrDefault();
 
-                        if (user != null && isConfirmed.EmailConfirmed == true)
+                        if (user != null)
                         {
                             ViewBag.Errors = false;
 
@@ -161,7 +161,7 @@ namespace NCS.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -180,10 +180,13 @@ namespace NCS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Role = new SelectList(db.Roles, "Name", "Name");
+            db = new ApplicationDbContext();
+            //IEnumerable<IdentityRole> removal = new List<IdentityRole>() { new IdentityRole { Id = "5ce2767b-8c55-4f55-b2c1-625b1cc66112", Name = "Admin" } };
+            ViewBag.Role = new SelectList(db.Roles, "Id", "Name");
             ViewBag.Errors = false;
             return View();
         }
+
 
         //
         // POST: /Account/Register
@@ -192,8 +195,10 @@ namespace NCS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            string role = model.RoleName;
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser
                 {
                     UserName = model.UserName,
@@ -202,13 +207,17 @@ namespace NCS.Controllers
                     DateOfJoining = DateTime.Now,
                     PhoneNumber = model.PhoneNumber,
                 };
+                if (role == null)
+                {
+                    role = "Employee";
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, role);
                     ViewBag.Errors = false;
                     ViewBag.Email = model.Email;
-                   
+
                     return View(model);
 
                 }
@@ -219,7 +228,13 @@ namespace NCS.Controllers
                 AddErrors(result);
             }
 
+
+            //List<IdentityRole> removal =  new List<IdentityRole>(){ new IdentityRole { Id = "5ce2767b-8c55-4f55-b2c1-625b1cc66112", Name = "Admin" } };
+
             // If we got this far, something failed, redisplay form
+            db = new ApplicationDbContext();
+            ViewBag.Role = new SelectList(db.Roles, "Id", "Name", role);
+
             return View(model);
         }
 

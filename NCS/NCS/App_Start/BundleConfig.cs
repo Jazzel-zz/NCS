@@ -8,17 +8,6 @@ namespace NCS
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/js/navscript.js",
                       "~/Scripts/js/jquery.js",
@@ -85,13 +74,50 @@ namespace NCS
                 ));
 
             bundles.Add(new StyleBundle("~/Content/assets").Include(
-                      "~/Content/assets/pricefilter/nouislider.css",
-                      "~/Content/assets/pricefilter/nouislider.pips.css",
-                      "~/Content/assets/timepicker/timePicker.css",
-                      "~/Content/assets/jqueryui.1.11.4/jqueryui.css",
-                      "~/Content/assets/bootstrapsl.1.12.1/bootstrapselect.css",
-                      "~/Content/assets/languageswitcher/polyglotlanguageswitcher.css"
-                ));
+                     "~/Content/assets/dash/pricefilter/nouislider.css",
+                     "~/Content/assets/dash/pricefilter/nouislider.pips.css",
+                     "~/Content/assets/dash/timepicker/timePicker.css",
+                     "~/Content/assets/dash/jqueryui.1.11.4/jqueryui.css",
+                     "~/Content/assets/dash/bootstrapsl.1.12.1/bootstrapselect.css",
+                     "~/Content/assets/dash/languageswitcher/polyglotlanguageswitcher.css"
+                               ));
+
+            bundles.Add(new StyleBundle("~/Content/assets/dash").Include(
+                      "~/Content/assets/dash/libs/datatables/dataTables.bootstrap4.css",
+                      "~/Content/assets/dash/libs/datatables/responsive.bootstrap4.css",
+                      "~/Content/assets/dash/libs/datatables/buttons.bootstrap4.css",
+                      "~/Content/assets/dash/libs/datatables/select.bootstrap4.css",
+                      "~/Content/assets/dash/css/bootstrap.min.css",
+                      "~/Content/assets/dash/css/icons.min.css",
+                      "~/Content/assets/dash/css/app.min.css"
+
+                     
+                                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/dash").Include(
+                  "~/Scripts/assets/dash/js/vendor.min.js",
+                    "~/Scripts/assets/dash/libs/jquery-knob/jquery.knob.min.js",
+                    "~/Scripts/assets/dash/libs/peity/jquery.peity.min.js",
+                    "~/Scripts/assets/dash/libs/jquery-sparkline/jquery.sparkline.min.js",
+                    "~/Scripts/assets/dash/js/pages/dashboard-1.init.js",
+                    "~/Scripts/assets/dash/js/app.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/jquery.dataTables.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/dataTables.bootstrap4.js",
+                    "~/Scripts/assets/dash/libs/datatables/dataTables.responsive.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/responsive.bootstrap4.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/dataTables.buttons.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/buttons.bootstrap4.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/buttons.html5.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/buttons.flash.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/buttons.print.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/dataTables.keyTable.min.js",
+                    "~/Scripts/assets/dash/libs/datatables/dataTables.select.min.js",
+                    "~/Scripts/assets/dash/libs/pdfmake/pdfmake.min.js",
+                    "~/Scripts/assets/dash/libs/pdfmake/vfs_fonts.js",
+                    "~/Scripts/assets/dash/js/pages/datatables.init.js"
+
+
+                              ));
 
 
         }

@@ -1,0 +1,123 @@
+﻿@model NCS.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Edit</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>OrderDetail</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ApplicationUserId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlanDetailId, "PlanDetail", htmlAttributes: new { @class = "control-label col" })
+            <div class="col">
+                @Html.DropDownList("PlanDetailId", null, htmlAttributes: new { @class = "form-control", @id = "plan" })
+                @Html.ValidationMessageFor(model => model.PlanDetailId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col">
+                <div class="card ">
+                    <div class="card-body">
+                        <div id="updatePanel" class="shadow p-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerId, "Customer", htmlAttributes: new { @class = "control-label col" })
+            <div class="col">
+                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-light" />
+            </div>
+        </div>
+    </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var getValue = $("#plan").val();
+            $("#plan").on('change', function () {
+                var getValue = $(this).val();
+                console.log(getValue);
+                getData(getValue);
+            });
+
+            getData(getValue);
+        });
+        function getData(P_id) {
+            $.ajax({
+                url: '/OrderDetails/GetPlan/',
+                type: "GET",
+                dataType: "json",
+                data: { id: P_id },
+                success: function (data) {
+                    console.log(data);
+                    console.log(data[0]);
+                    var id = data[0].id;
+                    var desc = data[0].desc;
+                    var dur = data[0].dur;
+                    var conn_type = data[0].conn_type;
+                    var conn = data[0].conn;
+                    var Tracker = 0;
+                    //var Duration = data.Duration;
+                    //var RateAmount = (Rate * carPrice) / 100;
+                    //var trackerAmount = (Tracker * carPrice) / 1000;
+                    //var TotalAmountCharged = trackerAmount + RateAmount;
+                    var updateData = "<div class='card animated fadeIn'> \
+                                                <div class='card-body'>  \
+                                                    <div class='row'> \
+                                                        <div class='col'> \
+                                                            <h2 class='text-center' style='font-family:Pacifico'>Plan Details</h2> \
+                                                        </div> \
+                                                    </div>  \
+                                                    <div class='row mt-4'> \
+                                                        <div class='col-4 text-center'>Duration: " + dur + " </div > \
+                                                        <div class='col-4 text-center'>Connection: " + conn_type + "</div > \
+                                                        <div class='col-4 text-center'>Connection Type: " + conn + "<br /> </div> </div>  \
+                                                        <br /> \
+                                                        <div class='row'>  \
+                                                            <div class='col text-center'>Description: " + desc + "</div> \
+                                                        </div> \
+                                                </div> \
+                                            </div> \
+                                           ";
+                    $("#updatePanel").html(updateData);
+                },
+                error: function (xhr, status, error) {
+                    console.log('error !!')
+                },
+            });
+        }
+    </script>
+}

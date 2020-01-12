@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NCS.Models.ConnectionType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-10">
+                <h2>Connection Types</h2>
+
+            </div>
+            <div class="col-2">
+                <p class="float-right">
+                    @Html.ActionLink("Create New", "Create", new { @area = "" }, new { @class = "btn btn-light" })
+                </p>
+            </div>
+        </div>
+
+       
+        <table class="table">
+            <tr>
+                <th>
+                    Added By
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
