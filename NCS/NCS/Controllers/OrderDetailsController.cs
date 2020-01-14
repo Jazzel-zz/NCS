@@ -57,6 +57,13 @@ namespace NCS.Controllers
             {
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
+                PaymentDetail paymentDetail = new PaymentDetail()
+                {
+                    OrderDetailId = orderDetail.Id,
+
+                };
+                db.PaymentDetails.Add(paymentDetail);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

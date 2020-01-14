@@ -8,10 +8,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <style>
         body {
-            background: url(../../Content/images/alex-suprun-A53o1drQS2k-unsplash.jpg);
+            background: url(../../Content/digitalmarketing.jpg);
             background-size: cover;
             background-attachment: fixed;
         }
@@ -40,15 +40,15 @@
                         {
                             @Html.AntiForgeryToken()
 
-                            if (ViewBag.Errors == true)
-                            {
-                                Html.ValidationSummary("", new { @class = "alert alert-danger text-danger" });
 
-                            }
 
                             <div class="container">
                                 <h1>Sign Up</h1>
                                 <br />
+                                @if (ViewBag.Errors == true)
+                                {
+                                    @Html.ValidationSummary("", new { @class = "alert alert-danger text-danger" });
+                                }
                                 <form class="w-100">
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Name, new { @class = "col-12 control-label" })
@@ -98,7 +98,7 @@
 
                                         </div>
                                     </div>
-                                    @*@if (User.IsInRole("Admin"))*@
+                                    @if (User.IsInRole("Admin"))
                                     {
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.RoleName, new { @class = "col-12 control-label" })

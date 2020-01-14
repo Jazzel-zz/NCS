@@ -101,13 +101,13 @@ namespace NCS.Controllers
                             ViewBag.Errors = false;
 
                             SignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                            if (User.IsInRole("Employee"))
+                            if (!User.IsInRole("Customer"))
                             {
                                 return RedirectToAction("Dashboard", "Home");
 
                             }
 
-                            return RedirectToAction("Index", "Manage");
+                            return RedirectToAction("Index", "Home");
 
 
 
@@ -182,7 +182,7 @@ namespace NCS.Controllers
         {
             db = new ApplicationDbContext();
             //IEnumerable<IdentityRole> removal = new List<IdentityRole>() { new IdentityRole { Id = "5ce2767b-8c55-4f55-b2c1-625b1cc66112", Name = "Admin" } };
-            ViewBag.Role = new SelectList(db.Roles, "Id", "Name");
+            ViewBag.Role = new SelectList(db.Roles, "Name", "Name");
             ViewBag.Errors = false;
             return View();
         }
@@ -209,7 +209,7 @@ namespace NCS.Controllers
                 };
                 if (role == null)
                 {
-                    role = "Employee";
+                    role = "Customer";
                 }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -218,8 +218,7 @@ namespace NCS.Controllers
                     ViewBag.Errors = false;
                     ViewBag.Email = model.Email;
 
-                    return View(model);
-
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -227,13 +226,17 @@ namespace NCS.Controllers
                 }
                 AddErrors(result);
             }
+            else
+            {
+                ViewBag.Errors = true;
+            }
 
 
             //List<IdentityRole> removal =  new List<IdentityRole>(){ new IdentityRole { Id = "5ce2767b-8c55-4f55-b2c1-625b1cc66112", Name = "Admin" } };
 
             // If we got this far, something failed, redisplay form
             db = new ApplicationDbContext();
-            ViewBag.Role = new SelectList(db.Roles, "Id", "Name", role);
+            ViewBag.Role = new SelectList(db.Roles, "Name", "Name", role);
 
             return View(model);
         }

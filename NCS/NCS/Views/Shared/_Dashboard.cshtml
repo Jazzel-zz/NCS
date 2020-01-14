@@ -53,11 +53,11 @@
                                 @Html.AntiForgeryToken()
 
                                 @*<ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                    </li>
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                </ul>*@
+                                        <li>
+                                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </li>
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    </ul>*@
 
 
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -101,7 +101,22 @@
                     <ul class="navigation-menu">
 
                         <li class="has-submenu">
-                            <a href="accountsdash.html"><i class="remixicon-dashboard-line"></i>Dashboard</a>
+                            <a href="/Home/Dashboard"><i class="remixicon-dashboard-line"></i>Dashboard</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="/ConnectionTypes"><i class="remixicon-dashboard-line"></i>Connections </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="/Connections"><i class="remixicon-dashboard-line"></i>Connection Types</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="/PlanDetails"><i class="remixicon-dashboard-line"></i>Plan Details</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="/OrderDetails"><i class="remixicon-dashboard-line"></i>Order Details</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="/PaymentDetails"><i class="remixicon-dashboard-line"></i>Bill Details</a>
                         </li>
                     </ul>
                     <!-- End navigation menu -->
@@ -121,7 +136,7 @@
     <!-- ============================================================== -->
     <div class="wrapper">
         <div class="container-fluid p-4">
-           @RenderBody()
+            @RenderBody()
         </div>
     </div>
     <!-- ============================================================== -->

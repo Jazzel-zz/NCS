@@ -212,6 +212,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\PaymentDetailsController.cs" />
     <Compile Include="Controllers\PlanDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1043,6 +1044,11 @@
     <Content Include="Views\PlanDetails\Details.cshtml" />
     <Content Include="Views\PlanDetails\Edit.cshtml" />
     <Content Include="Views\PlanDetails\Index.cshtml" />
+    <Content Include="Views\PaymentDetails\Create.cshtml" />
+    <Content Include="Views\PaymentDetails\Delete.cshtml" />
+    <Content Include="Views\PaymentDetails\Details.cshtml" />
+    <Content Include="Views\PaymentDetails\Edit.cshtml" />
+    <Content Include="Views\PaymentDetails\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,124 +6,116 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using NCS.Models;
 
 namespace NCS.Controllers
 {
-    [Authorize]
-
-    public class PlanDetailsController : Controller
+    public class PaymentDetailsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: PlanDetails
+        // GET: PaymentDetails
         public ActionResult Index()
         {
-            var planDetails = db.PlanDetails.Include(p => p.ApplicationUser).Include(p => p.Connection);
-            return View(planDetails.ToList());
+            var paymentDetails = db.PaymentDetails.Include(p => p.OrderDetail);
+            return View(paymentDetails.ToList());
         }
 
-        // GET: PlanDetails/Details/5
+        // GET: PaymentDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlanDetail planDetail = db.PlanDetails.Find(id);
-            if (planDetail == null)
+            PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
+            if (paymentDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(planDetail);
+            return View(paymentDetail);
         }
 
-        // GET: PlanDetails/Create
+        // GET: PaymentDetails/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Name");
-            ViewBag.ConnectionId = new SelectList(db.Connections, "Id", "ConnectionName");
+            ViewBag.OrderDetailId = new SelectList(db.OrderDetails, "Id", "CustomerId");
             return View();
         }
 
-        // POST: PlanDetails/Create
+        // POST: PaymentDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ConnectionId,Duration,Description,ApplicationUserId")] PlanDetail planDetail)
+        public ActionResult Create([Bind(Include = "Id,OrderDetailId")] PaymentDetail paymentDetail)
         {
             if (ModelState.IsValid)
             {
-                planDetail.ApplicationUserId = User.Identity.GetUserId();
-                db.PlanDetails.Add(planDetail);
+                db.PaymentDetails.Add(paymentDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Name", planDetail.ApplicationUserId);
-            ViewBag.ConnectionId = new SelectList(db.Connections, "Id", "ConnectionName", planDetail.ConnectionId);
-            return View(planDetail);
+            ViewBag.OrderDetailId = new SelectList(db.OrderDetails, "Id", "CustomerId", paymentDetail.OrderDetailId);
+            return View(paymentDetail);
         }
 
-        // GET: PlanDetails/Edit/5
+        // GET: PaymentDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlanDetail planDetail = db.PlanDetails.Find(id);
-            if (planDetail == null)
+            PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
+            if (paymentDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Name", planDetail.ApplicationUserId);
-            ViewBag.ConnectionId = new SelectList(db.Connections, "Id", "ConnectionName", planDetail.ConnectionId);
-            return View(planDetail);
+            ViewBag.OrderDetailId = new SelectList(db.OrderDetails, "Id", "CustomerId", paymentDetail.OrderDetailId);
+            return View(paymentDetail);
         }
 
-        // POST: PlanDetails/Edit/5
+        // POST: PaymentDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ConnectionId,Duration,Description,ApplicationUserId")] PlanDetail planDetail)
+        public ActionResult Edit([Bind(Include = "Id,OrderDetailId")] PaymentDetail paymentDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(planDetail).State = EntityState.Modified;
+                db.Entry(paymentDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Name", planDetail.ApplicationUserId);
-            ViewBag.ConnectionId = new SelectList(db.Connections, "Id", "ConnectionName", planDetail.ConnectionId);
-            return View(planDetail);
+            ViewBag.OrderDetailId = new SelectList(db.OrderDetails, "Id", "CustomerId", paymentDetail.OrderDetailId);
+            return View(paymentDetail);
         }
 
-        // GET: PlanDetails/Delete/5
+        // GET: PaymentDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PlanDetail planDetail = db.PlanDetails.Find(id);
-            if (planDetail == null)
+            PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
+            if (paymentDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(planDetail);
+            return View(paymentDetail);
         }
 
-        // POST: PlanDetails/Delete/5
+        // POST: PaymentDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PlanDetail planDetail = db.PlanDetails.Find(id);
-            db.PlanDetails.Remove(planDetail);
+            PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
+            db.PaymentDetails.Remove(paymentDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
