@@ -28,6 +28,19 @@ namespace NCS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var data = (from item in db.PaymentDetails
+                       where item.Id == id
+                       select new
+                       {
+                           Id = item.Id,
+                           Connection = item.OrderDetail.PlanDetail.Connection.ConnectionType.Type,
+                           ConnectionType = item.OrderDetail.PlanDetail.Connection.ConnectionName,
+                           Customer = item.OrderDetail.Customer.Name,
+                           GivenBy = item.OrderDetail.ApplicationUser.Name,
+                           Duration = item.OrderDetail.PlanDetail.Duration,
+                           Description = item.OrderDetail.PlanDetail.Description,
+                       }).ToList();
+            ViewBag.data = data.ToArray();
             PaymentDetail paymentDetail = db.PaymentDetails.Find(id);
             if (paymentDetail == null)
             {

@@ -13,14 +13,38 @@
             <h4>PaymentDetail</h4>
             <hr />
             <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.OrderDetail.CustomerId)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.OrderDetail.CustomerId)
-                </dd>
-
+                @foreach (var item in (IEnumerable<dynamic>)ViewBag.data)
+                {
+                    string data = item.ToString();
+                    data = data.Replace("{", "");
+                    data = data.Replace("}", "");
+                    string[] data_arr = data.Split(',');
+                    string[] __;
+                    <dt>
+                        Connection:
+                    </dt>
+                    <dd>@{ __ = data_arr[1].Split('='); <p>@__[1].ToString()</p> }</dd>
+                    <dt>
+                        Connection Type:
+                    </dt>
+                    <dd>@{ __ = data_arr[2].Split('='); <p>@__[1].ToString()</p> }</dd>
+                    <dt>
+                        Duration:
+                    </dt>
+                    <dd>@{ __ = data_arr[5].Split('='); <p>@__[1].ToString()</p> }</dd>
+                    <dt>
+                        Description:
+                    </dt>
+                    <dd>@{ __ = data_arr[6].Split('='); <p>@__[1].ToString()</p> }</dd>
+                    <dt>
+                        Given To:
+                    </dt>
+                    <dd>@{ __ = data_arr[3].Split('='); <p>@__[1].ToString()</p> }</dd>
+                    <dt>
+                        Assigned By:
+                    </dt>
+                    <dd>@{ __ = data_arr[4].Split('='); <p>@__[1].ToString()</p> }</dd>
+                }
             </dl>
         </div>
         <p>
